@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import modal from "@goalabs.id/react-shared-components/dist/components/Modal";
 import EvaIcons from "components/EvaIcons";
 import { useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import ModalCart from "components/ModalCart";
 
 export default function Header({ children }) {
   const cart = useSelector((state) => state.cart);
+  const [indicator, setIndicator] = useState(false);
 
   function fnCart() {
     modal.show(<ModalCart />, {
@@ -27,10 +28,13 @@ export default function Header({ children }) {
           zIndex: 1030,
         },
         className: "",
+        timeout: 250,
       },
       container: {
         style: { margin: 0, justifyContent: "end" },
         className: "flex",
+        classNameAnimated: "content-right",
+        timeoutAnimated: 250,
       },
       overlay: {
         style: {
@@ -53,6 +57,13 @@ export default function Header({ children }) {
     });
   }
 
+  useEffect(() => {
+    setIndicator(true);
+    setTimeout(() => {
+      setIndicator(false);
+    }, 1000);
+  }, [cart.length]);
+
   return (
     <header className="flex justify-between items-center">
       <div className="">{children}</div>
@@ -66,6 +77,14 @@ export default function Header({ children }) {
         >
           {cart.length > 0 && (
             <div className="absolute right-0 top-0 z-10 bg-[#FBD560] rounded-full w-3 h-3"></div>
+          )}
+          {cart.length > 0 && (
+            <div
+              className={[
+                "absolute right-0 top-0 z-10 bg-[#FBD560] rounded-full w-3 h-3",
+                indicator ? "animate-ping" : "",
+              ].join(" ")}
+            ></div>
           )}
           <div>
             <EvaIcons icon="shopping-cart-outline" size={24} />

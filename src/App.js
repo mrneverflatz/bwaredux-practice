@@ -8,6 +8,7 @@ import NotFound from "pages/NotFound";
 import { Routes, Route } from "react-router-dom";
 import { ModalProvider } from "@goalabs.id/react-shared-components/dist/components/Modal";
 import modalConfigs from "lib/configs/modalProvider";
+import "@goalabs.id/react-shared-components/dist/components/Modal/index.css";
 
 function App() {
   return (

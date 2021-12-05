@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.2",
-    "@goalabs.id/react-shared-components": "^0.1.25",
+    "@goalabs.id/react-shared-components": "^0.1.26",
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
